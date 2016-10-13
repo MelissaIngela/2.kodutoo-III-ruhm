@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 	
 	require("functions.php");
 	
@@ -57,7 +57,26 @@
 		}
 		
 	}
+	$nameError = "";	
+	$name = "";
 	
+	//kas on üldse olemas
+	if (isset ($_POST["name"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tühi
+		if (empty ($_POST["name"])) {
+			
+			//oli tõesti tühi
+			$nameError = "See väli on kohustuslik";
+			
+		} else {
+				
+			// kõik korras, email ei ole tühi ja on olemas
+			$name = $_POST["name"];
+		}
+		
+	}
 	
 	$gender = "";
 	if(isset($_POST["gender"])) {
@@ -84,10 +103,46 @@
 		echo "räsi ".$password."<br>";
 		
 		//kutsun funktsiooni, et salvestada
-		signup($signupEmail, $password);
+		signup($signupEmail, $password, $name);
 		
 	}	
+	$loginEmailError = "";
+	$loginEmail = "";
 	
+	if (isset ($_POST["loginEmail"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tühi
+		if (empty ($_POST["loginEmail"])) {
+			
+			//oli tõesti tühi
+			$loginEmailError = "See väli on kohustuslik";
+			
+		} else {
+				
+			// kõik korras, email ei ole tühi ja on olemas
+			$loginEmail = $_POST["loginEmail"];
+		}
+		
+	}
+	$loginPasswordError = "";
+	$loginPassword = "";
+	if (isset ($_POST["loginPassword"])) {
+		
+		// oli olemas, ehk keegi vajutas nuppu
+		// kas oli tühi
+		if (empty ($_POST["loginPassword"])) {
+			
+			//oli tõesti tühi
+			$loginPasswordError = "See väli on kohustuslik";
+			
+		} else {
+				
+			// kõik korras, email ei ole tühi ja on olemas
+			$loginPassword = $_POST["loginPassword"];
+		}
+		
+	}
 	
 	$notice = "";
 	// mõlemad login vormi väljad on täidetud
@@ -98,6 +153,7 @@
 	) {
 		$notice = login($_POST["loginEmail"], $_POST["loginPassword"]);
 	}
+	
 	
 	
 
@@ -116,12 +172,12 @@
 		<form method="POST">
 			
 			<label>E-post</label><br>
-			<input name="loginEmail" type="email">
+			<input name="loginEmail" type="email" value="<?=$loginEmail;?>" > <?php echo $loginEmailError; ?>
 			
 			<br><br>
 			
 			<label>Parool</label><br>
-			<input name="loginPassword" type="password">
+			<input name="loginPassword" type="password" value="<?=$loginPassword;?>" > <?php echo $loginPasswordError; ?>
 						
 			<br><br>
 			
@@ -133,12 +189,16 @@
 		
 		<form method="POST">
 			
-			<label>E-post</label><br>
-			<input name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
+			<br>
+			<input placeholder="E-Post" name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
 			
 			<br><br>
 			
 			<input placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+						
+			<br><br>
+			
+			<input placeholder="Kasutajanimi" name="text" type="name" value="<?=$name;?>" > <?php echo $nameError; ?>
 						
 			<br><br>
 			

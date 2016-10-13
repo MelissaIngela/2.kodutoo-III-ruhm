@@ -25,7 +25,9 @@
 	) {
 		$notice = note($_POST["note"], $_POST["color"]);
 		
-		$note=cleanInput($_POST["note"]);
+		
+		$note = cleanInput($_POST["note"]);
+		
 		
 	}
 	
@@ -48,12 +50,13 @@
 <!DOCTYPE html>
 
 
+
 		<h2>Märkmed<h2>
 		<form method="POST">
 			
 			<label>Tekst</label><br>
 			
-			<input name="note" type="text">
+			<input name="note" type="text" <textarea rows="4" cols="50">
 						
 			<br><br>
 			
@@ -66,6 +69,7 @@
 			<input type="submit">
 		
 		</form>
+		
 <h2> arhiiv </h2>
 		
 <?php
