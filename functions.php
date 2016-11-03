@@ -79,7 +79,7 @@
 	}
 	
 	
-	function note($note, $color) {
+	function note($note, $main, $content) {
 		
 		$mysqli = new mysqli(
 		
@@ -89,10 +89,10 @@
 		$GLOBALS["database"]
 		
 		);
-		$stmt = $mysqli->prepare("INSERT INTO colorNotes (note, color) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (note, main, content) VALUES (?, ?, ?)");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $note, $color );
+		$stmt->bind_param("sss", $note, $main, $content );
 		if ( $stmt->execute() ) {
 			echo "salvestamine õnnestus  " ;	
 		} else {	
@@ -105,9 +105,9 @@
 		
 		$mysqli = new mysqli ($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare(" SELECT id, note, color FROM colorNotes");
+		$stmt = $mysqli->prepare(" SELECT id, note, main, content FROM colorNotes");
 		
-		$stmt->bind_result($id, $note, $color);
+		$stmt->bind_result($id, $note, $main, $content);
 		
 		$stmt->execute();
 		
@@ -119,7 +119,8 @@
 			$object = new StdClass();
 			$object->id = $id;
 			$object->note = $note;
-			$object->noteColor = $color;
+			$object->maain = $main;
+			$object->content = $main;
 			
 			
 			
