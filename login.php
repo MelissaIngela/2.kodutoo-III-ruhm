@@ -60,19 +60,16 @@
 	$nameError = "";	
 	$name = "";
 	
-	//kas on üldse olemas
+	
 	if (isset ($_POST["name"])) {
 		
-		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tühi
+		
 		if (empty ($_POST["name"])) {
 			
-			//oli tõesti tühi
 			$nameError = "See väli on kohustuslik";
 			
 		} else {
 				
-			// kõik korras, email ei ole tühi ja on olemas
 			$name = $_POST["name"];
 		}
 		
@@ -181,7 +178,7 @@
 						
 			<br><br>
 			
-			<input type="submit">
+			<input type="submit" value="Logi sisse">
 		
 		</form>
 		
@@ -219,6 +216,8 @@
 			<?php } else { ?>
 				<input type="radio" name="gender" value="other"> Muu<br>
 			<?php } ?>
+			
+			<br>
 			
 			<input type="submit" value="Loo kasutaja">
 		

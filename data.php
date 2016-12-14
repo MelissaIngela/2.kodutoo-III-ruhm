@@ -87,6 +87,7 @@
 	
 		$html .= "<tr>";
 			$html .= "<th>id</th>";
+			
 			$html .= "<th>Toidu nimi</th>";
 			
 			$html .= "<th>Retsept</th>";

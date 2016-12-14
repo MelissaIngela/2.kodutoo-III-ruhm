@@ -120,7 +120,7 @@
 			$object->id = $id;
 			$object->note = $note;
 			$object->maain = $main;
-			$object->content = $main;
+			$object->content = $content;
 			
 			
 			
